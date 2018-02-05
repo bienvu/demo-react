@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Switch, Route } from 'react-router-dom';
+import Header from "./layout/Header";
+import ViewItem from "./components/ViewItem";
+import FormAdd from "./components/FormAdd";
+import FormUpdate from "./components/FormUpdate";
 import './App.css';
+import './css/base.css';
+import './css/reset.css';
+import './css/style.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header />
+        <main>
+          <Switch>
+            <Route exact path='/' render={() => (<ViewItem />)}/>
+            <Route path='/add' component={FormAdd} />
+            <Route path='/update/:id' component={FormUpdate} />
+          </Switch>
+        </main>
       </div>
     );
   }
